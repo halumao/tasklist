@@ -1,0 +1,16 @@
+<% if logged_in? %>
+<p><%= link_to '新規作成', new_task_path %></p>
+<h1>タスク一覧</h1>
+<% @tasks.each do |task| %>
+<p>
+
+<%= task.status %>
+<%= task.content %>
+</p>
+<% if current_user == task.user %>
+    <%= link_to 'delete', task, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+    <%= link_to 'edit', edit_task_path(task) %>
+<% end %>
+<% end %>
+
+<% end %>
